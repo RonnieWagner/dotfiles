@@ -1,0 +1,9 @@
+# Shared Ghostty configuration
+# Managed by GNU Stow
+
+# Window spacing
+window-padding-x = 10
+window-padding-y = 10
+
+# Appearance
+theme = Catppuccin Mocha

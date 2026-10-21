@@ -1,0 +1,20 @@
+# Shared Starship configuration
+# Catppuccin Mocha
+
+palette = "catppuccin_mocha"
+
+[palettes.catppuccin_mocha]
+lavender = "#b4befe"
+mauve = "#cba6f7"
+green = "#a6e3a1"
+red = "#f38ba8"
+
+[directory]
+style = "bold lavender"
+
+[git_branch]
+style = "bold mauve"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"

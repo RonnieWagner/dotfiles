@@ -6,6 +6,9 @@ if [[ -f "$HOME/.zshrc.local" ]]; then
     source "$HOME/.zshrc.local"
 fi
 
+# Allow comments in interactive terminal commands
+setopt interactivecomments
+
 # Homebrew-based shell enhancements
 if command -v brew >/dev/null 2>&1; then
     ZSH_BREW_PREFIX="$(brew --prefix)"

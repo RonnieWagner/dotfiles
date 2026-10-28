@@ -1,6 +1,30 @@
 # Shared Starship configuration
 # Catppuccin Mocha
 
+format = """
+[┌─](fg:#45475a)\
+[](fg:green)\
+[  ](bg:green fg:#1e1e2e)\
+[](fg:green bg:lavender)\
+$directory\
+$git_branch\
+${custom.no_git_edge}\
+$git_status\
+$python\
+$fill\
+$status\
+[](fg:mauve bg:#1e3a5f)\
+[ System  ](bold fg:#1e1e2e bg:mauve)\
+[](fg:green bg:mauve)\
+$time\
+[┐](fg:#45475a)\
+$line_break\
+[└─](fg:#45475a)\
+$character\
+"""
+
+right_format = """[┘](fg:#45475a)"""
+
 palette = "catppuccin_mocha"
 
 [palettes.catppuccin_mocha]
@@ -10,11 +34,36 @@ green = "#a6e3a1"
 red = "#f38ba8"
 
 [directory]
-style = "bold lavender"
+style = "bold bg:lavender fg:#1e1e2e"
+format = "[  $path ]($style)"
 
 [git_branch]
-style = "bold mauve"
+symbol = " "
+style = "bold bg:mauve fg:#1e1e2e"
+format = "[](fg:lavender bg:mauve)[ $symbol$branch ]($style)[](fg:mauve)"
 
 [character]
 success_symbol = "[❯](bold green)"
 error_symbol = "[❯](bold red)"
+
+[custom.no_git_edge]
+when = '! git rev-parse --is-inside-work-tree >/dev/null 2>&1'
+format = '[](fg:lavender)'
+
+[status]
+disabled = false
+symbol = "✘"
+success_symbol = "✔"
+map_symbol = true
+style = "bold fg:#a6e3a1 bg:#1e3a5f"
+format = "[](fg:#1e3a5f)[ $symbol ]($style)"
+
+[time]
+disabled = false
+time_format = "%I:%M:%S %p"
+style = "bold fg:#1e1e2e bg:green"
+format = "[ $time  ]($style)"
+
+[fill]
+symbol = "─"
+style = "fg:#45475a"

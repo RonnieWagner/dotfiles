@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# JankyBorders — Catppuccin Mocha
+# Focused: Mauve
+# Unfocused: Surface2
+
+options=(
+  style=round
+  width=5.0
+  active_color=0xffcba6f7
+  inactive_color=0xff585b70
+)
+
+borders "${options[@]}"

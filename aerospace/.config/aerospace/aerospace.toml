@@ -86,6 +86,11 @@ gaps.outer.right =      0
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
 
+    # Application launchers
+    alt-t = '''exec-and-forget osascript -e 'tell application "Ghostty" to new window' '''
+    alt-b = 'exec-and-forget open -a Firefox'
+    alt-m = 'exec-and-forget open -a Mail'
+
     # All possible keys:
     # - Letters.        a, b, c, ..., z
     # - Numbers.        0, 1, 2, ..., 9
@@ -140,21 +145,18 @@ gaps.outer.right =      0
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
     alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-    alt-b = 'workspace B'
     alt-c = 'workspace C'
     alt-d = 'workspace D'
     alt-e = 'workspace E'
     alt-f = 'workspace F'
     alt-g = 'workspace G'
     alt-i = 'workspace I'
-    alt-m = 'workspace M'
     alt-n = 'workspace N'
     alt-o = 'workspace O'
     alt-p = 'workspace P'
     alt-q = 'workspace Q'
     alt-r = 'workspace R'
     alt-s = 'workspace S'
-    alt-t = 'workspace T'
     alt-u = 'workspace U'
     alt-v = 'workspace V'
     alt-w = 'workspace W'

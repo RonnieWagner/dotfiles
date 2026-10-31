@@ -14,6 +14,7 @@ It's also a hands-on learning project as I continue developing my skills in soft
 | [Zsh](https://www.zsh.org/) | Interactive shell |
 | [Starship](https://starship.rs/) | Customized Powerline-style shell prompt |
 | [AeroSpace](https://nikitabobko.github.io/AeroSpace/) | Tiling window manager |
+| [SketchyBar](https://github.com/FelixKratz/SketchyBar) | Custom macOS menu bar and system indicators |
 | [JankyBorders](https://github.com/FelixKratz/JankyBorders) | Active window border highlighting |
 | [Sol](https://github.com/ospfranco/sol) | macOS productivity utilities |
 | [tmux](https://github.com/tmux/tmux/wiki) | Terminal multiplexer and session management |
@@ -27,6 +28,7 @@ It's also a hands-on learning project as I continue developing my skills in soft
 ```text
 dotfiles/
 ├── aerospace/       # Tiling window manager
+├── sketchybar/       # Custom menu bar, colors, and plugins
 ├── borders/          # JankyBorders configuration
 ├── ghostty/          # Terminal settings and theme
 ├── sol/              # Productivity utility settings
@@ -56,6 +58,8 @@ GNU Stow manages the symbolic links, allowing applications to read their configu
 
 My terminal environment combines Ghostty, Zsh, and a customized Starship prompt using the Catppuccin Mocha color palette.
 
+Ghostty uses Catppuccin Mocha with 90% background opacity, a blur setting of 20, and 10-pixel window padding. These settings provide a translucent terminal appearance while preserving readability.
+
 The prompt includes:
 
 - Powerline-style segments
@@ -75,13 +79,16 @@ Machine-specific shell settings are stored in `~/.zshrc.local`, outside this rep
 
 AeroSpace provides keyboard-driven tiling and workspace management.
 
-My workflow uses three primary workspaces:
+My workflow uses four primary workspaces:
 
 | Workspace | Purpose |
 |---|---|
 | `DEV` | VS Code, software development, and documentation |
 | `LAB` | Ghostty, SSH, tmux, and infrastructure administration |
 | `WEB` | Browsing, email, and communications |
+| `MEDIA` | Jellyfin, streaming, music, and gaming |
+
+AeroSpace uses 10-pixel inner and outer window gaps to provide separation between tiled windows and screen edges. Workspace changes are forwarded to SketchyBar for active-workspace highlighting.
 
 #### Keyboard Shortcuts
 
@@ -90,7 +97,8 @@ My workflow uses three primary workspaces:
 | `Option + 1` | Switch to DEV |
 | `Option + 2` | Switch to LAB |
 | `Option + 3` | Switch to WEB |
-| `Option + Shift + 1/2/3` | Move focused window to selected workspace |
+| `Option + 4` | Switch to MEDIA |
+| `Option + Shift + 1/2/3/4` | Move focused window to selected workspace |
 | `Option + H/J/K/L` | Focus windows by direction |
 | `Option + Shift + H/J/K/L` | Move windows by direction |
 | `Option + T` | Create a new Ghostty window |
@@ -134,6 +142,123 @@ The configuration is stored at:
 ```text
 sol/.config/sol/config.json
 ```
+
+## Custom Menu Bar — SketchyBar
+
+[SketchyBar](https://github.com/FelixKratz/SketchyBar) replaces the standard macOS menu bar display with a customizable, script-driven interface.
+
+My configuration uses the Catppuccin Mocha color palette, translucent violet backgrounds, and rounded corners.
+
+### Bar Layout
+
+**Left side**
+- DEV, LAB, WEB, and MEDIA workspace indicators
+- Violet background highlighting the active AeroSpace workspace
+- Current focused application with a persistent rounded background
+
+**Right side**
+- Output volume percentage and mute status
+- Battery percentage, external power status, and low-battery colors
+- Local system clock
+- Shared translucent background behind the three indicators
+
+### Configuration Structure
+
+```text
+sketchybar/.config/sketchybar/
+├── sketchybarrc
+├── colors.sh
+└── plugins/
+    ├── aerospace.sh
+    ├── battery.sh
+    ├── clock.sh
+    ├── front_app.sh
+    └── volume.sh
+```
+
+`sketchybarrc` defines the bar's layout, appearance, widgets, update intervals, and event subscriptions.
+
+`colors.sh` defines the shared Catppuccin Mocha palette.
+
+The `plugins/` directory contains Bash scripts responsible for updating individual indicators.
+
+### Integration with AeroSpace
+
+AeroSpace notifies SketchyBar whenever the focused workspace changes.
+
+The `aerospace.sh` plugin retrieves the active workspace and applies the selected workspace's highlight color and background.
+
+Current configured workspaces:
+
+`DEV`, `LAB`, `WEB`, `MEDIA`
+
+Adding another named workspace currently requires updating the AeroSpace configuration, the SketchyBar workspace list, and the workspace-highlighting plugin.
+
+### Indicator Update Intervals
+
+| Indicator | Refresh interval |
+|---|---|
+| Clock | 30 seconds |
+| Battery | 60 seconds |
+| Volume | 5 seconds |
+| Focused application | 2 seconds |
+| Workspace highlighting | AeroSpace event-driven |
+
+Battery information comes from macOS `pmset`, volume information from AppleScript, and focused-window information from AeroSpace.
+
+### Automatic Startup
+
+SketchyBar is managed through Homebrew services.
+
+```bash
+# Check service status
+brew services list
+
+# Start SketchyBar and enable automatic login startup
+brew services start sketchybar
+
+# Restart the service when troubleshooting
+brew services restart sketchybar
+
+# Reload the configuration without restarting the service
+sketchybar --reload
+```
+
+### Installing the Configuration with GNU Stow
+
+From the repository root:
+
+```bash
+# Preview symlinks
+stow -n -v --no-folding -t "$HOME" sketchybar
+
+# Apply after reviewing the preview
+stow -v --no-folding -t "$HOME" sketchybar
+```
+
+SketchyBar must be installed separately before starting its service.
+
+### Customization
+
+Edit these files to change the appearance or behavior:
+
+- `colors.sh` — shared theme colors
+- `sketchybarrc` — layout, backgrounds, fonts, spacing, and refresh intervals
+- `plugins/aerospace.sh` — active workspace highlighting
+- `plugins/battery.sh` — battery status colors
+- `plugins/volume.sh` — volume display and mute styling
+
+Validate Bash scripts before reloading:
+
+```bash
+bash -n ~/.config/sketchybar/sketchybarrc
+bash -n ~/.config/sketchybar/plugins/aerospace.sh
+sketchybar --reload
+```
+
+The configuration is designed primarily for macOS on Apple Silicon.
+
+
 
 ## Terminal Session Management
 
@@ -226,13 +351,13 @@ stow -v --no-folding -t "$HOME" zsh
 Preview:
 
 ```bash
-stow -n -v --no-folding -t "$HOME" aerospace borders sol tmux
+stow -n -v --no-folding -t "$HOME" aerospace borders sol tmux sketchybar
 ```
 
 Deploy after checking for conflicts:
 
 ```bash
-stow -v --no-folding -t "$HOME" aerospace borders sol tmux
+stow -v --no-folding -t "$HOME" aerospace borders sol tmux sketchybar
 ```
 
 **Important:** GNU Stow will report conflicts with existing files rather than automatically overwrite them. Review and back up existing configurations before deploying.

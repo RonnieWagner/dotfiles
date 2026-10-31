@@ -1,0 +1,104 @@
+#!/bin/bash
+
+# Minimal SketchyBar — Catppuccin Mocha
+CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+source "$CONFIG_DIR/colors.sh"
+
+# Transparent bar
+sketchybar --bar \
+  position=top \
+  height=36 \
+  color="$BAR_BG" \
+  blur_radius=0 \
+  border_width=0 \
+  shadow=off \
+  padding_left=12 \
+  padding_right=12
+
+# Default item appearance
+sketchybar --default \
+  icon.font="Helvetica Neue:Bold:13.0" \
+  label.font="Helvetica Neue:Bold:13.0" \
+  icon.color="$TEXT" \
+  label.color="$TEXT" \
+  icon.drawing=off \
+  padding_left=8 \
+  padding_right=8
+
+# Workspace placeholders
+for workspace in DEV LAB WEB MEDIA; do
+  sketchybar --add item "space.$workspace" left \
+    --set "space.$workspace" \
+    label="$workspace" \
+    label.color="$SUBTEXT" \
+    background.drawing=off \
+    background.color=0x406c7086 \
+    background.corner_radius=8 \
+    background.height=24 \
+    background.padding_left=8 \
+    background.padding_right=8 \
+    padding_left=4 \
+    padding_right=4
+done
+
+# AeroSpace workspace-change integration
+sketchybar --add event aerospace_workspace_change
+
+sketchybar --set space.DEV \
+  script="$CONFIG_DIR/plugins/aerospace.sh" \
+  --subscribe space.DEV aerospace_workspace_change
+
+# MEDIA workspace — subscribe to AeroSpace changes
+sketchybar --set space.MEDIA \
+  script="$CONFIG_DIR/plugins/aerospace.sh" \
+  --subscribe space.MEDIA aerospace_workspace_change
+
+# Highlight the focused workspace at startup
+"$CONFIG_DIR/plugins/aerospace.sh"
+
+# Focused application — left side, after workspaces
+sketchybar --add item front_app left \
+  --set front_app \
+  script="$CONFIG_DIR/plugins/front_app.sh" \
+  update_freq=2 \
+  label.color="$MAUVE" \
+  background.drawing=on \
+  background.color=0x996c7086 \
+  background.corner_radius=8 \
+  background.height=24 \
+  background.padding_left=8 \
+  background.padding_right=8 \
+  padding_left=8 \
+  padding_right=8
+
+# Clock — automatically refresh every 30 seconds
+sketchybar --add item clock right \
+  --set clock \
+  update_freq=30 \
+  script="$CONFIG_DIR/plugins/clock.sh" \
+  label.color="$MAUVE"
+
+# Battery — refresh every 60 seconds
+sketchybar --add item battery right \
+  --set battery \
+  script="$CONFIG_DIR/plugins/battery.sh" \
+  update_freq=60 \
+  label.color="$MAUVE"
+
+  # Volume — refresh every 5 seconds
+sketchybar --add item volume right \
+  --set volume \
+  script="$CONFIG_DIR/plugins/volume.sh" \
+  update_freq=5 \
+  label.color="$MAUVE"
+
+# Right group — background for clock, battery, and volume
+sketchybar --add bracket right_group volume battery clock \
+  --set right_group \
+  background.drawing=on \
+  background.color=0x996c7086 \
+  background.corner_radius=10 \
+  background.height=26 \
+  background.border_width=0
+
+sketchybar --update

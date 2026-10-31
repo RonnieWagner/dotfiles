@@ -8,5 +8,11 @@ window-padding-y = 10
 # Appearance
 theme = Catppuccin Mocha
 
+# Window transparency — 90% opacity
+background-opacity = 0.90
+
+# Subtle background blur
+background-blur = 20
+
 # Stop Notification Prompt
 clipboard-paste-protection = false

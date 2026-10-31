@@ -17,6 +17,13 @@ start-at-login = false
 # After setting this to true, reload once manually to start the auto-reloading
 auto-reload-config = false
 
+# Notify SketchyBar when the focused workspace changes
+exec-on-workspace-change = [
+    '/bin/bash',
+    '-c',
+    '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -50,7 +57,7 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config option is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["DEV", "LAB", "WEB", "4", "5", "6", "7", "8", "9", "A", "B",
+persistent-workspaces = ["DEV", "LAB", "WEB", "MEDIA", "5", "6", "7", "8", "9", "A", "B",
                          "C", "D", "E", "F", "G", "I", "M", "N", "O", "P", "Q",
                          "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
@@ -73,12 +80,12 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
-gaps.inner.horizontal = 0
-gaps.inner.vertical =   0
-gaps.outer.left =       0
-gaps.outer.bottom =     0
-gaps.outer.top =        0
-gaps.outer.right =      0
+gaps.inner.horizontal = 10
+gaps.inner.vertical =   10
+gaps.outer.left =       10
+gaps.outer.bottom =     10
+gaps.outer.top =        10
+gaps.outer.right =      10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -138,7 +145,7 @@ gaps.outer.right =      0
     alt-1 = 'workspace DEV'
     alt-2 = 'workspace LAB'
     alt-3 = 'workspace WEB'
-    alt-4 = 'workspace 4'
+    alt-4 = 'workspace MEDIA'
     alt-5 = 'workspace 5'
     alt-6 = 'workspace 6'
     alt-7 = 'workspace 7'
@@ -168,7 +175,7 @@ gaps.outer.right =      0
     alt-shift-1 = 'move-node-to-workspace DEV'
     alt-shift-2 = 'move-node-to-workspace LAB'
     alt-shift-3 = 'move-node-to-workspace WEB'
-    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-4 = 'move-node-to-workspace MEDIA'
     alt-shift-5 = 'move-node-to-workspace 5'
     alt-shift-6 = 'move-node-to-workspace 6'
     alt-shift-7 = 'move-node-to-workspace 7'

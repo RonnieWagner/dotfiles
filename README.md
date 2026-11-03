@@ -6,6 +6,10 @@ I maintain this repository to keep my development environment consistent, track 
 
 It's also a hands-on learning project as I continue developing my skills in software engineering, shell scripting, Git, and system administration.
 
+## Documentation
+
+- [Homebrew Setup and Maintenance](docs/Homebrew_Brewfile_Setup_and_Maintenance.md)
+
 ## Tech Stack
 
 | Tool | Purpose |

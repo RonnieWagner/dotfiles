@@ -272,13 +272,26 @@ tmux provides terminal session management, allowing me to organize development a
 
 It's particularly useful when working with SSH connections and multiple systems.
 
-My current configuration is intentionally minimal:
+Below is my current configuration:
 
-```tmux
-set -g mouse on
+
+This allows me to use my mouse to resize panes by clicking on them and dragging them with my mouse
+
+```bash
+tmux set -g mouse on
+ ```
+- Appearance: Catppuccin Mocha with rounded window labels.
+- Feedback: a prefix indicator after pressing Ctrl+b.
+- Help: Ctrl+b, ? opens floating help; Esc closes it.
+- Dependency: Catppuccin v2.3.2 must be downloaded separately to ~/.local/share/tmux/plugins/catppuccin.
+
+new-machine installation instructions:
+The catppuccin Mocha theme needs to be downloaded separately. You can find it here:
+
+```bash
+mkdir -p ~/.local/share/tmux/plugins
+git clone --branch v2.3.2 --depth 1 https://github.com/catppuccin/tmux.git ~/.local/share/tmux/plugins/catppuccin
 ```
-
-This enables mouse interaction while retaining tmux's default keybindings and behavior.
 
 Common commands:
 
@@ -291,6 +304,9 @@ tmux list-sessions
 
 # Attach to an existing session
 tmux attach -t development
+
+# Reload tmux configuration from a running tmux session
+tmux source-file ~/.config/tmux/tmux.conf
 ```
 
 To detach without terminating a session, press `Ctrl + B`, followed by `D`.

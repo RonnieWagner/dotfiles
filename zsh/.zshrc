@@ -34,3 +34,13 @@ if [[ -n "${ZSH_BREW_PREFIX:-}" ]]; then
     fi
 fi
 unset ZSH_BREW_PREFIX
+
+# Collapse previous Starship prompts to a minimal indicator
+TRANSIENT_PROMPT_TRANSIENT_PROMPT='%F{green}❯%f '
+TRANSIENT_PROMPT_TRANSIENT_RPROMPT=''
+
+# Load transient prompt support after Starship and Zsh plugins
+if [[ -f /opt/homebrew/share/zsh-transient-prompt/transient-prompt.zsh-theme ]]; then
+    source /opt/homebrew/share/zsh-transient-prompt/transient-prompt.zsh-theme
+fi
+

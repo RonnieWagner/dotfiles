@@ -53,6 +53,8 @@ brew "zsh-syntax-highlighting"
 brew "areofyl/fetch/fetch-git", trusted: true
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
+# zsh transient prompt support
+brew "olets/tap/zsh-transient-prompt"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Desktop password and login vault

@@ -53,8 +53,6 @@ brew "zsh-syntax-highlighting"
 brew "areofyl/fetch/fetch-git", trusted: true
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
-# Custom macOS statusbar with shell plugin, interaction and graph support
-brew "felixkratz/formulae/sketchybar", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Desktop password and login vault

@@ -22,7 +22,7 @@ The file was created using `brew bundle dump` on the existing MacBook. At the ti
 |---|---|
 | Homebrew taps | `areofyl/fetch`, `felixkratz/formulae`, `nikitabobko/tap` |
 | Command-line tools | `git`, `neovim`, `tmux`, `stow`, `starship`, `fzf`, `jq`, `bat`, `btop`, `powershell`, `pyenv`, `rclone` |
-| macOS desktop customization | `aerospace`, `felixkratz/formulae/sketchybar`, `felixkratz/formulae/borders`, `ghostty`, `sol`, `spaceman` |
+| macOS desktop customization | `aerospace`, `felixkratz/formulae/borders`, `ghostty`, `sol`, `spaceman` |
 | Applications | `joplin`, `bitwarden`, `libreoffice`, `localsend`, `moonlight`, `github`, `codex`, `pdf-reader-pro` |
 | VS Code extensions | GitLens, Python/Pylance, PowerShell, Remote-SSH, GitHub Pull Requests, themes and visual customizations |
 | Go installation | `github.com/bootdotdev/bootdev` |
@@ -158,7 +158,7 @@ Add other packages only after inspecting their layout and any existing destinati
 
 ### 5. Finish machine-specific setup
 
-Verify Git authentication, SSH keys, macOS privacy/accessibility permissions, AeroSpace/SketchyBar startup behavior, application logins, and any private settings. These are not automatically restored by the Brewfile.
+Verify Git authentication, SSH keys, macOS privacy/accessibility permissions, AeroSpace startup behavior, application logins, and any private settings. These are not automatically restored by the Brewfile.
 
 ## Joplin migration notes
 

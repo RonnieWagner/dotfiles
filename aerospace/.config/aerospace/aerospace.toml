@@ -17,7 +17,7 @@ start-at-login = true
 # After setting this to true, reload once manually to start the auto-reloading
 auto-reload-config = false
 
-# Notify SketchyBar when the focused workspace changes
+# No external workspace-change callbacks
 exec-on-workspace-change = []
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization

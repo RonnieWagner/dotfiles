@@ -1,0 +1,12 @@
+[user]
+	name = Ronnie Wagner Jr.
+	email = ronniewagner@purplecity.tech
+[init]
+	defaultbranch = main
+[core]
+	editor = code --wait
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

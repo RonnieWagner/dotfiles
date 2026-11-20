@@ -55,6 +55,8 @@ brew "areofyl/fetch/fetch-git", trusted: true
 brew "felixkratz/formulae/borders", trusted: true
 # zsh transient prompt support
 brew "olets/tap/zsh-transient-prompt"
+# Web browser
+cask "firefox"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Cloud storage and file synchronization service

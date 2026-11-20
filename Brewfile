@@ -57,6 +57,8 @@ brew "felixkratz/formulae/borders", trusted: true
 brew "olets/tap/zsh-transient-prompt"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
+# Cloud storage and file synchronization service
+cask "nextcloud"
 # Desktop password and login vault
 cask "bitwarden"
 # OpenAI's coding agent that runs in your terminal
